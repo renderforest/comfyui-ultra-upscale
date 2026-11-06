@@ -1,4 +1,16 @@
 {
-  "videoUrl": [["1", "inputs", "video"]],
-  "target": [["10", "inputs", "target"]]
+  "videoUrl": [
+    [
+      "1",
+      "inputs",
+      "video"
+    ]
+  ],
+  "targetShortSide": [
+    [
+      "22",
+      "inputs",
+      "resize_type.shorter_size"
+    ]
+  ]
 }
