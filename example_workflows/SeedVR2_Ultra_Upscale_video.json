@@ -1,0 +1,684 @@
+{
+  "id": "seedvr2-ultra-upscale",
+  "revision": 0,
+  "last_node_id": 8,
+  "last_link_id": 11,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "LoadVideo",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        340,
+        678.4444444444445
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            1
+          ]
+        }
+      ],
+      "title": "INPUT VIDEO",
+      "properties": {
+        "Node name for S&R": "LoadVideo",
+        "cnr_id": "comfy-core",
+        "ver": "0.28.0"
+      },
+      "widgets_values": [
+        "your_clip.mp4",
+        "image"
+      ],
+      "widgets_values_named": {
+        "file": "11.mp4",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 2,
+      "type": "GetVideoComponents",
+      "pos": [
+        0,
+        380
+      ],
+      "size": [
+        230,
+        130
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            2,
+            6
+          ]
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [
+            7,
+            10
+          ]
+        },
+        {
+          "name": "fps",
+          "type": "FLOAT",
+          "links": [
+            8,
+            11
+          ]
+        },
+        {
+          "name": "bit_depth",
+          "type": "COMBO",
+          "links": []
+        },
+        {
+          "name": "color_space",
+          "type": "COMBO",
+          "links": []
+        }
+      ],
+      "title": "Split: frames · audio · fps",
+      "properties": {
+        "Node name for S&R": "GetVideoComponents",
+        "cnr_id": "comfy-core",
+        "ver": "0.28.0"
+      }
+    },
+    {
+      "id": 3,
+      "type": "UNETLoader",
+      "pos": [
+        0,
+        520
+      ],
+      "size": [
+        380,
+        100
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "showAdvanced": false,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            3
+          ]
+        }
+      ],
+      "title": "SeedVR2 model — 7B INT8 · 7B fp16 = max · 3B INT8 = fastest",
+      "properties": {
+        "Node name for S&R": "UNETLoader",
+        "cnr_id": "comfy-core",
+        "ver": "0.27.0",
+        "models": [
+          {
+            "name": "seedvr2_3b_int8_convrot.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/SeedVR2/resolve/main/diffusion_models/seedvr2_3b_int8_convrot.safetensors",
+            "directory": "diffusion_models"
+          }
+        ]
+      },
+      "widgets_values": [
+        "seedvr2_7b_int8_convrot.safetensors",
+        "default"
+      ],
+      "widgets_values_named": {
+        "unet_name": "seedvr2_7b_int8_convrot.safetensors",
+        "weight_dtype": "default"
+      }
+    },
+    {
+      "id": 4,
+      "type": "VAELoader",
+      "pos": [
+        0,
+        660
+      ],
+      "size": [
+        380,
+        80.99592951999995
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            4
+          ]
+        }
+      ],
+      "title": "SeedVR2 VAE",
+      "properties": {
+        "Node name for S&R": "VAELoader",
+        "cnr_id": "comfy-core",
+        "ver": "0.27.0",
+        "models": [
+          {
+            "name": "seedvr2_ema_vae_fp16.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/SeedVR2/resolve/main/vae/seedvr2_ema_vae_fp16.safetensors",
+            "directory": "vae"
+          }
+        ]
+      },
+      "widgets_values": [
+        "seedvr2_ema_vae_fp16.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "seedvr2_ema_vae_fp16.safetensors"
+      }
+    },
+    {
+      "id": 5,
+      "type": "SeedVR2UltraUpscale",
+      "title": "SeedVR2 Ultra Upscale 🎬",
+      "pos": [
+        420,
+        0
+      ],
+      "size": [
+        440,
+        300
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 2
+        },
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 3
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 4
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            9
+          ]
+        },
+        {
+          "name": "info",
+          "type": "STRING",
+          "links": [
+            5
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SeedVR2UltraUpscale"
+      },
+      "widgets_values": [
+        "Detect · Medium",
+        "1080p",
+        true,
+        0.0,
+        42,
+        "fixed"
+      ]
+    },
+    {
+      "id": 6,
+      "type": "ShowText|pysssss",
+      "pos": [
+        420,
+        340
+      ],
+      "size": [
+        504.6560723206752,
+        403.4462550740427
+      ],
+      "flags": {},
+      "order": 32,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 5
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "shape": 6,
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ShowText|pysssss"
+      },
+      "widgets_values": [
+        "A polished 3D animated-film render shows a medium shot of a scene on an expansive open-air timber terrace at Woods Center. Exactly two people are in the frame. On the left, Aram, a cheerful young Armenian creative professional in his late twenties with thick wavy dark brown hair and warm expressive brown eyes, sits in a rounded lounge armchair facing toward the right in a three-quarter view; his face, hair, build, and mustard-yellow knit sweater over a white collar and teal chinos match his reference image. On the right, Ani, a stylish young woman in her mid-twenties with dark shoulder-length hair in a loose top bun and almond-shaped dark hazel eyes, sits in a matching armchair facing toward the left in a three-quarter view; her face, hair, build, and oversized mint-green cardigan over a cream patterned dress match her reference image. They sit facing slightly toward each other with expressive smiling faces. A low wooden coffee table sits between them holding coffee cups and a tablet. In the background, rolling pine hills and distant mountain peaks of Armenia spread beneath a clear cyan sky under soft afternoon sun. The entire scene features rounded expressive characters with soft matte skin, vibrant saturated colors, and warm bounce lighting in a polished 3D animated-film style."
+      ],
+      "widgets_values_named": {
+        "text_0": "A polished 3D animated-film render shows a medium shot of a scene on an expansive open-air timber terrace at Woods Center. Exactly two people are in the frame. On the left, Aram, a cheerful young Armenian creative professional in his late twenties with thick wavy dark brown hair and warm expressive brown eyes, sits in a rounded lounge armchair facing toward the right in a three-quarter view; his face, hair, build, and mustard-yellow knit sweater over a white collar and teal chinos match his reference image. On the right, Ani, a stylish young woman in her mid-twenties with dark shoulder-length hair in a loose top bun and almond-shaped dark hazel eyes, sits in a matching armchair facing toward the left in a three-quarter view; her face, hair, build, and oversized mint-green cardigan over a cream patterned dress match her reference image. They sit facing slightly toward each other with expressive smiling faces. A low wooden coffee table sits between them holding coffee cups and a tablet. In the background, rolling pine hills and distant mountain peaks of Armenia spread beneath a clear cyan sky under soft afternoon sun. The entire scene features rounded expressive characters with soft matte skin, vibrant saturated colors, and warm bounce lighting in a polished 3D animated-film style."
+      },
+      "title": "info — what Detect Mode measured and chose"
+    },
+    {
+      "id": 7,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        920,
+        0
+      ],
+      "size": [
+        1000,
+        899.25
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 6
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": 7
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        },
+        {
+          "name": "frame_rate",
+          "type": "FLOAT",
+          "widget": {
+            "name": "frame_rate"
+          },
+          "link": 8
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": []
+        }
+      ],
+      "title": "SOURCE (preview, not saved)",
+      "properties": {
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "upscaled/source_preview",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 12,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "source_preview_00005-audio.mp4",
+            "subfolder": "upscaled",
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "source_preview_00005.png",
+            "fullpath": "/workspace/comfyui/ComfyUI/temp/upscaled/source_preview_00005-audio.mp4",
+            "metadata": {
+              "kind": "video",
+              "width": 1280,
+              "height": 720,
+              "duration": 7.041666666666667,
+              "fps": 24,
+              "frame_count": 169
+            }
+          }
+        }
+      },
+      "widgets_values_named": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "upscaled/source_preview",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 12,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "source_preview_00005-audio.mp4",
+            "subfolder": "upscaled",
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "source_preview_00005.png",
+            "fullpath": "/workspace/comfyui/ComfyUI/temp/upscaled/source_preview_00005-audio.mp4",
+            "metadata": {
+              "kind": "video",
+              "width": 1280,
+              "height": 720,
+              "duration": 7.041666666666667,
+              "fps": 24,
+              "frame_count": 169
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 8,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        1440,
+        0
+      ],
+      "size": [
+        1000,
+        899.25
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 26,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 9
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": 10
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        },
+        {
+          "name": "frame_rate",
+          "type": "FLOAT",
+          "widget": {
+            "name": "frame_rate"
+          },
+          "link": 11
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": []
+        }
+      ],
+      "title": "UPSCALED VIDEO (saved)",
+      "properties": {
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "upscaled/SeedVR2_Ultra",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 12,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": true,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "SeedVR2_00094-audio.mp4",
+            "subfolder": "upscaled",
+            "type": "output",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "SeedVR2_00094.png",
+            "fullpath": "/workspace/comfyui/ComfyUI/output/upscaled/SeedVR2_00094-audio.mp4",
+            "metadata": {
+              "kind": "video",
+              "width": 1920,
+              "height": 1080,
+              "duration": 7.041666666666667,
+              "fps": 24,
+              "frame_count": 169
+            }
+          }
+        }
+      },
+      "widgets_values_named": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "upscaled/SeedVR2",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 12,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": true,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "SeedVR2_00094-audio.mp4",
+            "subfolder": "upscaled",
+            "type": "output",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "SeedVR2_00094.png",
+            "fullpath": "/workspace/comfyui/ComfyUI/output/upscaled/SeedVR2_00094-audio.mp4",
+            "metadata": {
+              "kind": "video",
+              "width": 1920,
+              "height": 1080,
+              "duration": 7.041666666666667,
+              "fps": 24,
+              "frame_count": 169
+            }
+          }
+        }
+      }
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "VIDEO"
+    ],
+    [
+      2,
+      2,
+      0,
+      5,
+      0,
+      "IMAGE"
+    ],
+    [
+      3,
+      3,
+      0,
+      5,
+      1,
+      "MODEL"
+    ],
+    [
+      4,
+      4,
+      0,
+      5,
+      2,
+      "VAE"
+    ],
+    [
+      5,
+      5,
+      1,
+      6,
+      0,
+      "STRING"
+    ],
+    [
+      6,
+      2,
+      0,
+      7,
+      0,
+      "IMAGE"
+    ],
+    [
+      7,
+      2,
+      1,
+      7,
+      1,
+      "AUDIO"
+    ],
+    [
+      8,
+      2,
+      2,
+      7,
+      4,
+      "FLOAT"
+    ],
+    [
+      9,
+      5,
+      0,
+      8,
+      0,
+      "IMAGE"
+    ],
+    [
+      10,
+      2,
+      1,
+      8,
+      1,
+      "AUDIO"
+    ],
+    [
+      11,
+      2,
+      2,
+      8,
+      4,
+      "FLOAT"
+    ]
+  ],
+  "groups": [
+    {
+      "title": "Input + models",
+      "bounding": [
+        -20,
+        -60,
+        420,
+        860
+      ],
+      "color": "#88A",
+      "font_size": 22
+    },
+    {
+      "title": "SeedVR2 Ultra Upscale — Detect · Gentle / Medium / Strong",
+      "bounding": [
+        400,
+        -60,
+        500,
+        1060
+      ],
+      "color": "#a1309b",
+      "font_size": 22
+    },
+    {
+      "title": "Output — source | upscaled",
+      "bounding": [
+        900,
+        -60,
+        1060,
+        1000
+      ],
+      "color": "#3f9e5a",
+      "font_size": 22
+    }
+  ],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}

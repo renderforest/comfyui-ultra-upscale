@@ -1,0 +1,482 @@
+{
+  "id": "ultra-upscale-video",
+  "revision": 0,
+  "last_node_id": 6,
+  "last_link_id": 9,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "LoadVideo",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        386.798828125,
+        510
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            1
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadVideo",
+        "cnr_id": "comfy-core",
+        "ver": "0.16.4",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65
+      },
+      "widgets_values": [
+        "your_clip.mp4",
+        "image"
+      ],
+      "widgets_values_named": {
+        "file": "example.mp4",
+        "upload": "image"
+      },
+      "title": "INPUT VIDEO"
+    },
+    {
+      "id": 2,
+      "type": "GetVideoComponents",
+      "pos": [
+        0,
+        380
+      ],
+      "size": [
+        193.530859375,
+        106
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            2,
+            8
+          ]
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [
+            5,
+            9
+          ]
+        },
+        {
+          "name": "fps",
+          "type": "FLOAT",
+          "links": [
+            6
+          ]
+        },
+        {
+          "name": "bit_depth",
+          "type": "COMBO",
+          "links": []
+        },
+        {
+          "name": "color_space",
+          "type": "COMBO",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "GetVideoComponents",
+        "cnr_id": "comfy-core",
+        "ver": "0.16.4",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65
+      },
+      "title": "Split: frames · audio · fps"
+    },
+    {
+      "id": 3,
+      "type": "RTXUltraUpscale",
+      "title": "Ultra Upscale ⚡",
+      "pos": [
+        400,
+        0
+      ],
+      "size": [
+        440,
+        620
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            4,
+            7
+          ]
+        },
+        {
+          "name": "info",
+          "type": "STRING",
+          "links": [
+            3
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RTXUltraUpscale"
+      },
+      "widgets_values": [
+        "Clean · Crisp",
+        "1080p",
+        "off",
+        0.5,
+        "HIGHBITRATE_ULTRA",
+        1.0,
+        "DEBLUR_LOW",
+        0.5,
+        0.3,
+        1.0,
+        0.01,
+        true,
+        0.0,
+        false,
+        false,
+        0,
+        "fixed"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "ShowText|pysssss",
+      "pos": [
+        400,
+        660
+      ],
+      "size": [
+        504.6560723206752,
+        403.4462550740427
+      ],
+      "flags": {},
+      "order": 32,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "shape": 6,
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ShowText|pysssss"
+      },
+      "widgets_values": [
+        "A polished 3D animated-film render shows a medium shot of a scene on an expansive open-air timber terrace at Woods Center. Exactly two people are in the frame. On the left, Aram, a cheerful young Armenian creative professional in his late twenties with thick wavy dark brown hair and warm expressive brown eyes, sits in a rounded lounge armchair facing toward the right in a three-quarter view; his face, hair, build, and mustard-yellow knit sweater over a white collar and teal chinos match his reference image. On the right, Ani, a stylish young woman in her mid-twenties with dark shoulder-length hair in a loose top bun and almond-shaped dark hazel eyes, sits in a matching armchair facing toward the left in a three-quarter view; her face, hair, build, and oversized mint-green cardigan over a cream patterned dress match her reference image. They sit facing slightly toward each other with expressive smiling faces. A low wooden coffee table sits between them holding coffee cups and a tablet. In the background, rolling pine hills and distant mountain peaks of Armenia spread beneath a clear cyan sky under soft afternoon sun. The entire scene features rounded expressive characters with soft matte skin, vibrant saturated colors, and warm bounce lighting in a polished 3D animated-film style."
+      ],
+      "widgets_values_named": {
+        "text_0": "A polished 3D animated-film render shows a medium shot of a scene on an expansive open-air timber terrace at Woods Center. Exactly two people are in the frame. On the left, Aram, a cheerful young Armenian creative professional in his late twenties with thick wavy dark brown hair and warm expressive brown eyes, sits in a rounded lounge armchair facing toward the right in a three-quarter view; his face, hair, build, and mustard-yellow knit sweater over a white collar and teal chinos match his reference image. On the right, Ani, a stylish young woman in her mid-twenties with dark shoulder-length hair in a loose top bun and almond-shaped dark hazel eyes, sits in a matching armchair facing toward the left in a three-quarter view; her face, hair, build, and oversized mint-green cardigan over a cream patterned dress match her reference image. They sit facing slightly toward each other with expressive smiling faces. A low wooden coffee table sits between them holding coffee cups and a tablet. In the background, rolling pine hills and distant mountain peaks of Armenia spread beneath a clear cyan sky under soft afternoon sun. The entire scene features rounded expressive characters with soft matte skin, vibrant saturated colors, and warm bounce lighting in a polished 3D animated-film style."
+      },
+      "title": "info"
+    },
+    {
+      "id": 5,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        880,
+        0
+      ],
+      "size": [
+        1000,
+        334
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 34,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 4
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": 5
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        },
+        {
+          "name": "frame_rate",
+          "type": "FLOAT",
+          "link": 6,
+          "widget": {
+            "name": "frame_rate"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": []
+        }
+      ],
+      "title": "UPSCALED VIDEO",
+      "properties": {
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "upscaled/Ultra",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 12,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": true
+      },
+      "widgets_values_named": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "H3",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 10,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": true,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "H3_00006-audio.mp4",
+            "subfolder": "",
+            "type": "output",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "H3_00006.png",
+            "fullpath": "/workspace/comfyui/ComfyUI/output/H3_00006-audio.mp4",
+            "metadata": {
+              "kind": "video",
+              "width": 2016,
+              "height": 1152,
+              "duration": 5.166666666666667,
+              "fps": 24,
+              "frame_count": 124
+            },
+            "id": "45bbfd77-fba1-41ba-9005-048fe90287c5"
+          }
+        }
+      }
+    },
+    {
+      "id": 6,
+      "type": "DenoVideoCompare",
+      "pos": [
+        880,
+        500
+      ],
+      "size": [
+        520,
+        632
+      ],
+      "flags": {},
+      "order": 41,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video_a",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 7
+        },
+        {
+          "name": "video_b",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 8
+        },
+        {
+          "name": "audio_a",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": 9
+        },
+        {
+          "name": "audio_b",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "Output",
+          "name": "comparison",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DenoVideoCompare"
+      },
+      "widgets_values": [
+        "Slider",
+        0.04,
+        "B",
+        false,
+        24,
+        false,
+        ""
+      ],
+      "widgets_values_named": {
+        "mode": "Slider",
+        "split_position": 0.04,
+        "toggle_image": "B",
+        "swap": false,
+        "fps": 24,
+        "burn_labels": false,
+        "deno_video_compare_canvas": ""
+      },
+      "title": "Compare: upscaled (A) vs source (B)"
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "VIDEO"
+    ],
+    [
+      2,
+      2,
+      0,
+      3,
+      0,
+      "IMAGE"
+    ],
+    [
+      3,
+      3,
+      1,
+      4,
+      0,
+      "STRING"
+    ],
+    [
+      4,
+      3,
+      0,
+      5,
+      0,
+      "IMAGE"
+    ],
+    [
+      5,
+      2,
+      1,
+      5,
+      1,
+      "AUDIO"
+    ],
+    [
+      6,
+      2,
+      2,
+      5,
+      4,
+      "FLOAT"
+    ],
+    [
+      7,
+      3,
+      0,
+      6,
+      0,
+      "IMAGE"
+    ],
+    [
+      8,
+      2,
+      0,
+      6,
+      1,
+      "IMAGE"
+    ],
+    [
+      9,
+      2,
+      1,
+      6,
+      2,
+      "AUDIO"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}
