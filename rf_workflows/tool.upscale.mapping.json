@@ -1,4 +1,23 @@
 {
-  "videoUrl": [["1", "inputs", "video"]],
-  "target": [["10", "inputs", "target"]]
+  "videoUrl": [
+    [
+      "1",
+      "inputs",
+      "video"
+    ]
+  ],
+  "targetWidth": [
+    [
+      "22",
+      "inputs",
+      "width"
+    ]
+  ],
+  "targetHeight": [
+    [
+      "22",
+      "inputs",
+      "height"
+    ]
+  ]
 }
