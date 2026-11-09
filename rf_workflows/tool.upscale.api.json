@@ -172,17 +172,18 @@
   },
   "22": {
     "inputs": {
-      "input": [
+      "upscale_method": "area",
+      "width": 1280,
+      "height": 720,
+      "crop": "center",
+      "image": [
         "23",
         0
-      ],
-      "resize_type": "scale shorter dimension",
-      "resize_type.shorter_size": 720,
-      "scale_method": "area"
+      ]
     },
-    "class_type": "ResizeImageMaskNode",
+    "class_type": "ImageScale",
     "_meta": {
-      "title": "TARGET SHORT SIDE (mapped): 720 | 1080"
+      "title": "Cover and center-crop to the target size"
     }
   },
   "23": {

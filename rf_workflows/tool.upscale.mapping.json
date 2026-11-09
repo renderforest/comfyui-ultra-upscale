@@ -6,11 +6,18 @@
       "video"
     ]
   ],
-  "targetShortSide": [
+  "targetWidth": [
     [
       "22",
       "inputs",
-      "resize_type.shorter_size"
+      "width"
+    ]
+  ],
+  "targetHeight": [
+    [
+      "22",
+      "inputs",
+      "height"
     ]
   ]
 }
