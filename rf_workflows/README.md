@@ -10,7 +10,7 @@ The `ai_workflows` row with code `tool.upscale` (type `upscale`) that ai-workers
 - `tool.upscale.seedvr2.*`: the previous SeedVR2 workflow (uses this repo's `SeedVR2UltraUpscale` node), kept for
   rollback; it maps `target` (`'720p'`/`'1080p'`) instead.
 
-Changes from Hayk's `relayvsr_upscale_presets.json`:
+Changes from Hayk's `relayvsr_upscale_presets.json` (2026-11-06 17:00 version: load format `None` for the frame fix, seed 42, sharpen 0.3):
 - Node 1 `VHS_LoadVideo` (a file in ComfyUI's input folder) → `VHS_LoadVideoPath` (URL input, same outputs).
 - Node 22 `ImageScaleToMaxDimension` (long side 1280/1920) → core `ResizeImageMaskNode` "scale shorter dimension":
   the long-side size gives the wrong output for square and 4:3 videos (a 720×720 base would come out 1280×1280).
